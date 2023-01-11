@@ -21,10 +21,11 @@ extension ReminderListViewController {
        }
     
     
-    func updateSnapShot(reloading ids:[Reminder.ID] = []){
+    func updateSnapShot(reloading idsThatChanged:[Reminder.ID] = []){
+        let ids = idsThatChanged.filter{id in filteredReminders.contains(where: { $0.id == id }) }
         var snapshot = SnapShot()
         snapshot.appendSections([0])
-        snapshot.appendItems(reminders.map{ $0.id})
+        snapshot.appendItems(filteredReminders.map{ $0.id})
         if(!ids.isEmpty){
             snapshot.reloadItems(ids)
         }
@@ -54,6 +55,17 @@ extension ReminderListViewController {
         
     }
     
+    func add(_ reminder:Reminder){
+        reminders.append(reminder)
+    }
+    
+    func deleteReminder(with id : Reminder.ID){
+        let index = reminders.indexOfReminder(with: id)
+        reminders.remove(at: index)
+    }
+    
+    
+    
     func completeReminder(with id:Reminder.ID){
         var reminder = reminder(for: id)
         reminder.isComplete.toggle()
@@ -64,7 +76,6 @@ extension ReminderListViewController {
     private func doneButtonAccessibilityAction(for reminder:Reminder) ->UIAccessibilityCustomAction {
         let name = NSLocalizedString("Toggle completion", comment: "Reminder done button accessibility label")
         let action = UIAccessibilityCustomAction(name: name) { [weak self] action in
-            
             self?.completeReminder(with: reminder.id)
             return true
         }

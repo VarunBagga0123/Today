@@ -10,7 +10,7 @@ import Foundation
 
 //You use identifiers to inform the data source of which items to include in the collection view and which items to reload when data changes. In the last tutorial, you used a reminder’s title as an identifier. Consider what would happen if a user were to change the title or create two reminders with the same title.
 
-struct Reminder:Identifiable{
+struct Reminder:Equatable,Identifiable{
     
     
     var id: String = UUID().uuidString

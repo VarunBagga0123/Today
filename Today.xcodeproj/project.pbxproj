@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFB135D0296E7DBE00311AA5 /* ReminderListStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB135CF296E7DBE00311AA5 /* ReminderListStyle.swift */; };
 		BFF37CC92964A576001DDF41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF37CC82964A576001DDF41 /* AppDelegate.swift */; };
 		BFF37CCB2964A576001DDF41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF37CCA2964A576001DDF41 /* SceneDelegate.swift */; };
 		BFF37CCD2964A576001DDF41 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF37CCC2964A576001DDF41 /* ReminderListViewController.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BFB135CF296E7DBE00311AA5 /* ReminderListStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListStyle.swift; sourceTree = "<group>"; };
 		BFF37CC52964A576001DDF41 /* Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Today.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF37CC82964A576001DDF41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFF37CCA2964A576001DDF41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				BFF37D002964BF41001DDF41 /* UIColor+Today.swift */,
 				BFF37CF92964A62A001DDF41 /* Reminder.swift */,
+				BFB135CF296E7DBE00311AA5 /* ReminderListStyle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				BFF37D1F296DEC0D001DDF41 /* TextViewContentView.swift in Sources */,
 				BFF37CFC2964B601001DDF41 /* Date+Today.swift in Sources */,
 				BFF37D032966129D001DDF41 /* ReminderDoneButton.swift in Sources */,
+				BFB135D0296E7DBE00311AA5 /* ReminderListStyle.swift in Sources */,
 				BFF37CC92964A576001DDF41 /* AppDelegate.swift in Sources */,
 				BFF37CCB2964A576001DDF41 /* SceneDelegate.swift in Sources */,
 				BFF37D19296B50E2001DDF41 /* UIView+PinnedSubview.swift in Sources */,
