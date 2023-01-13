@@ -14,7 +14,7 @@ class ReminderListViewController: UICollectionViewController {
    
     
     var dataSource:DataSource!
-    var reminders: [Reminder] = Reminder.sampleData
+    var reminders: [Reminder] = []
     var listStylee: ReminderListStyle = .Today
     var filteredReminders : [Reminder] {
         return reminders.filter{listStylee.shouldInclude(date: $0.dueDate)}.sorted{$0.dueDate<$1.dueDate}
@@ -65,7 +65,7 @@ class ReminderListViewController: UICollectionViewController {
         navigationItem.rightBarButtonItem = addButton
         
         updateSnapShot()
-        
+        prepareReminderStore()
         
         collectionView.dataSource = dataSource
           
@@ -124,6 +124,16 @@ class ReminderListViewController: UICollectionViewController {
         let gradientLayer = CAGradientLayer.gradientLayer(for: listStylee, in: collectionView.frame)
         backgroundView.layer.addSublayer(gradientLayer)
         collectionView.backgroundView = backgroundView
+    }
+    
+    func showError(_ error:Error){
+        let alertTitle = NSLocalizedString("Error", comment: "Error alert title")
+        let alert = UIAlertController(title: alertTitle, message: error.localizedDescription, preferredStyle: .alert)
+        let actionTitle = NSLocalizedString("OK", comment: "Alert OK button title")
+        alert.addAction(UIAlertAction(title: actionTitle, style: .default, handler: { [weak self] _ in
+                   self?.dismiss(animated: true)
+        }))
+        present(alert,animated: true)
     }
     
     

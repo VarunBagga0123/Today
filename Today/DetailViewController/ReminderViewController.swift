@@ -1,6 +1,7 @@
 import UIKit
 
 class ReminderViewController: UICollectionViewController {
+    
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Row>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Row>
     
@@ -10,6 +11,7 @@ class ReminderViewController: UICollectionViewController {
             onChange(reminder)
         }
     }
+    
     var workingReminder: Reminder
     var isAddingNewReminder = false
     var onChange: (Reminder)->Void

@@ -12,7 +12,6 @@ import Foundation
 
 struct Reminder:Equatable,Identifiable{
     
-    
     var id: String = UUID().uuidString
     var title : String
     var dueDate : Date
