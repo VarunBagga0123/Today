@@ -9,7 +9,7 @@ import Foundation
 
 extension ReminderViewController {
     
-    enum Section: Int,Hashable{
+    enum Section: Int , Hashable {
         
         case view
         case title

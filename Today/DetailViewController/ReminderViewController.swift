@@ -116,6 +116,7 @@ class ReminderViewController: UICollectionViewController {
     }
     
     private func section(for indexPath: IndexPath) -> Section {
+        
         let sectionNumber = isEditing ? indexPath.section + 1 : indexPath.section
         guard let section = Section(rawValue: sectionNumber) else {
             fatalError("Unable to find matching section")
@@ -123,5 +124,4 @@ class ReminderViewController: UICollectionViewController {
         return section
     }
     
-   
 }

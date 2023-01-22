@@ -49,11 +49,12 @@ class TextViewContentView:UIView,UIContentView{
        }
    }
 
-   extension UICollectionViewListCell {
-       func textViewConfiguration() -> TextViewContentView.Configuration {
-           TextViewContentView.Configuration()
-       }
-   }
+extension UICollectionViewListCell {
+    
+      func textViewConfiguration() -> TextViewContentView.Configuration {
+        TextViewContentView.Configuration()
+    }
+}
 
 extension TextViewContentView : UITextViewDelegate {
     
