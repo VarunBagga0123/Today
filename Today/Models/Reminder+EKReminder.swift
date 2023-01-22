@@ -1,16 +1,13 @@
-//
-//  Reminder+EKReminder.swift
-//  Today
-//
-//  Created by Varun Bagga on 13/01/23.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+*/
 
 import Foundation
 import EventKit
 
-extension Reminder{
-    init(with ekReminder:EKReminder) throws {
-        guard let dueDate = ekReminder.alarms?.first?.absoluteDate else{
+extension Reminder {
+    init(with ekReminder: EKReminder) throws {
+        guard let dueDate = ekReminder.alarms?.first?.absoluteDate else {
             throw TodayError.reminderHasNoDueDate
         }
         id = ekReminder.calendarItemIdentifier
@@ -20,3 +17,4 @@ extension Reminder{
         isComplete = ekReminder.isCompleted
     }
 }
+

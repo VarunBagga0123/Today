@@ -1,28 +1,23 @@
-//
-//  ReminderStoer.swift
-//  Today
-//
-//  Created by Varun Bagga on 13/01/23.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+*/
 
 import Foundation
 import EventKit
 
-
-class ReminderStore{
-    
+class ReminderStore {
     static let shared = ReminderStore()
     
     private let ekStore = EKEventStore()
     
-    var isAvailable:Bool {
+    var isAvailable: Bool {
         EKEventStore.authorizationStatus(for: .reminder) == .authorized
     }
     
     func requestAccess() async throws {
         let status = EKEventStore.authorizationStatus(for: .reminder)
 
-        switch status{
+        switch status {
         case .authorized:
             return
         case .restricted:
@@ -34,59 +29,57 @@ class ReminderStore{
             }
         case .denied:
             throw TodayError.accessDenied
-            
         @unknown default:
-                   throw TodayError.unknown
+            throw TodayError.unknown
         }
     }
     
-    private func read(with id:Reminder.ID) throws->EKReminder{
+    private func read(with id: Reminder.ID) throws -> EKReminder {
         guard let ekReminder = ekStore.calendarItem(withIdentifier: id) as? EKReminder else {
-                  throw TodayError.failedReadingCalendarItem
-              }
+            throw TodayError.failedReadingCalendarItem
+        }
         return ekReminder
     }
     
-    func  readAll() async throws ->[Reminder] {
+    func readAll() async throws -> [Reminder] {
         guard isAvailable else {
             throw TodayError.accessDenied
         }
+        
         let predicate = ekStore.predicateForReminders(in: nil)
         let ekReminders = try await ekStore.fetchReminders(matching: predicate)
-        let reminders:[Reminder] = try ekReminders.compactMap{ ekReminder in
+        let reminders: [Reminder] = try ekReminders.compactMap { ekReminder in
             do {
                 return try Reminder(with: ekReminder)
-            }catch TodayError.reminderHasNoDueDate{
+            } catch TodayError.reminderHasNoDueDate {
                 return nil
             }
         }
         return reminders
     }
     
-    func remove(with id:Reminder.ID) throws{
+    func remove(with id: Reminder.ID) throws {
         guard isAvailable else {
-                   throw TodayError.accessDenied
-               }
-               let ekReminder = try read(with: id)
-               try ekStore.remove(ekReminder, commit: true)
+            throw TodayError.accessDenied
+        }
+        let ekReminder = try read(with: id)
+        try ekStore.remove(ekReminder, commit: true)
     }
     
-    
     @discardableResult
-    func save(_ reminder:Reminder)throws ->Reminder.ID{
-        guard isAvailable else{
+    func save(_ reminder: Reminder) throws -> Reminder.ID {
+        guard isAvailable else {
             throw TodayError.accessDenied
         }
         let ekReminder: EKReminder
-                do {
-                    ekReminder = try read(with: reminder.id)
-                } catch {
-                    ekReminder = EKReminder(eventStore: ekStore)
-                }
+        do {
+            ekReminder = try read(with: reminder.id)
+        } catch {
+            ekReminder = EKReminder(eventStore: ekStore)
+        }
         ekReminder.update(using: reminder, in: ekStore)
         try ekStore.save(ekReminder, commit: true)
-        
         return ekReminder.calendarItemIdentifier
-
     }
 }
+

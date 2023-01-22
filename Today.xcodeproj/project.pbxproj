@@ -126,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF50FF28297D280A00CA6544 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BFF37D082966BFF1001DDF41 /* DetailViewController */,
+				BFF37CFD2964BA7A001DDF41 /* ListViewController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		BFF37CBC2964A576001DDF41 = {
 			isa = PBXGroup;
 			children = (
@@ -149,9 +158,8 @@
 		BFF37CC72964A576001DDF41 /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				BF50FF28297D280A00CA6544 /* Controller */,
 				BFF37D17296B5066001DDF41 /* ContentViews */,
-				BFF37D082966BFF1001DDF41 /* DetailViewController */,
-				BFF37CFD2964BA7A001DDF41 /* ListViewController */,
 				BFF37CF82964A616001DDF41 /* Models */,
 				BFF37CC82964A576001DDF41 /* AppDelegate.swift */,
 				BFF37CCA2964A576001DDF41 /* SceneDelegate.swift */,

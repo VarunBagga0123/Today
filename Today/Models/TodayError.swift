@@ -1,21 +1,17 @@
-//
-//  TodayError.swift
-//  Today
-//
-//  Created by Varun Bagga on 13/01/23.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+*/
 
 import Foundation
 
-enum TodayError :LocalizedError{
-    
+enum TodayError: LocalizedError {
     case accessDenied
     case accessRestricted
     case failedReadingCalendarItem
     case failedReadingReminders
     case reminderHasNoDueDate
     case unknown
-       
+    
     var errorDescription: String? {
         switch self {
         case .accessDenied:
@@ -33,3 +29,4 @@ enum TodayError :LocalizedError{
         }
     }
 }
+

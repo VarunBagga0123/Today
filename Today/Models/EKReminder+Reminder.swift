@@ -1,22 +1,18 @@
-//
-//  EKReminder+Reminder.swift
-//  Today
-//
-//  Created by Varun Bagga on 13/01/23.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+*/
 
 import Foundation
 import EventKit
 
-extension EKReminder{
-    
-    func update(using reminder:Reminder,in store:EKEventStore){
+extension EKReminder {
+    func update(using reminder: Reminder, in store: EKEventStore) {
         title = reminder.title
         notes = reminder.notes
         isCompleted = reminder.isComplete
         calendar = store.defaultCalendarForNewReminders()
-        alarms?.forEach{ alarm in
-            guard let absoluteDate = alarm.absoluteDate else{return}
+        alarms?.forEach { alarm in
+            guard let absoluteDate = alarm.absoluteDate else { return }
             let comparison = Locale.current.calendar.compare(reminder.dueDate, to: absoluteDate, toGranularity: .minute)
             if comparison != .orderedSame {
                 removeAlarm(alarm)
@@ -26,5 +22,5 @@ extension EKReminder{
             addAlarm(EKAlarm(absoluteDate: reminder.dueDate))
         }
     }
-    
 }
+

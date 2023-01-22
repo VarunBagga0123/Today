@@ -1,37 +1,26 @@
-//
-//  Reminder.swift
-//  Today
-//
-//  Created by Varun Bagga on 03/01/23.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+*/
 
 import Foundation
 
-
-//You use identifiers to inform the data source of which items to include in the collection view and which items to reload when data changes. In the last tutorial, you used a reminder’s title as an identifier. Consider what would happen if a user were to change the title or create two reminders with the same title.
-
-struct Reminder:Equatable,Identifiable{
-    
+struct Reminder: Equatable, Identifiable {
     var id: String = UUID().uuidString
-    var title : String
-    var dueDate : Date
-    var notes : String? = nil
-    var isComplete : Bool = false
-    var currentPriority : Float = 0.0
+    var title: String
+    var dueDate: Date
+    var notes: String? = nil
+    var isComplete: Bool = false
 }
 
-extension Array where Element == Reminder{
-    
-    func indexOfReminder(with id:Reminder.ID)-> Self.Index {
-        guard let index = firstIndex(where: {$0.id == id}) else{
+extension Array where Element == Reminder {
+    func indexOfReminder(with id: Reminder.ID) -> Self.Index {
+        guard let index = firstIndex(where: { $0.id == id }) else {
             fatalError()
         }
         return index
     }
-    
 }
 
-//The #if DEBUG flag is a compilation directive that prevents the enclosed code from compiling when you build the app for release. You can use this flag for testing code in debug builds — or for providing sample test data, like you’ll do in the next step.
 #if DEBUG
 extension Reminder {
     static var sampleData = [
@@ -47,3 +36,4 @@ extension Reminder {
     ]
 }
 #endif
+
